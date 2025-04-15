@@ -1,11 +1,10 @@
+"use client"
 
+import React from "react";
 import {
     Button,
     MegaMenu,
-    MegaMenuDropdown,
     NavbarBrand,
-    NavbarCollapse,
-    NavbarLink,
     NavbarToggle,
   } from "flowbite-react";
 
@@ -96,19 +95,24 @@ import {
     }
   }
   
-  function AppHeader() {
+  interface AppHeaderProps {
+    onNewTaskClick: () => void;
+  }
+  
+  const AppHeader:React.FC<AppHeaderProps> =  ({ onNewTaskClick }: AppHeaderProps)=> {
     return (
       <MegaMenu theme={customTheme} className="w-full col-span-4">
         <NavbarBrand href="/">
-          <span className="self-center whitespace-nowrap text-3xl font-semibold dark:text-white">TASK MANAGER</span>
+          <span className="self-center whitespace-nowrap text-3xl font-semibold dark:text-white">
+            TASK MANAGER
+          </span>
         </NavbarBrand>
         <div className="order-2 hidden items-center md:flex">
-          <Button href="#">New Task</Button>
+          <Button onClick={onNewTaskClick}>New Task</Button>
         </div>
         <NavbarToggle />
       </MegaMenu>
     );
   }
-
-  export default AppHeader;
   
+  export default AppHeader;

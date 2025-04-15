@@ -1,5 +1,7 @@
+ "use client"
 
 import { Card, Dropdown, DropdownItem } from "flowbite-react";
+import React from "react";
 
 const customTheme = {
     "root": {
@@ -20,7 +22,7 @@ const customTheme = {
     }
   }
 
-export function AppCard() {
+const AppCard:React.FC = () => {
   return (
     <Card theme={customTheme}  className="max-w-sm ">
       <div className="flex justify-end px-2 pt-2">
