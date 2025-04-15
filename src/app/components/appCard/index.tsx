@@ -1,7 +1,10 @@
  "use client"
 
-import { Card, Dropdown, DropdownItem } from "flowbite-react";
+import { deleteTask, updateTaskStatus } from "@/redux/slice";
+import { ITask } from "@/types/type";
+import { Card } from "flowbite-react";
 import React from "react";
+import { useDispatch } from "react-redux";
 
 const customTheme = {
     "root": {
@@ -22,7 +25,30 @@ const customTheme = {
     }
   }
 
-const AppCard:React.FC = () => {
+const AppCard:React.FC<ITask> = ({description, title , status, id}) => {
+  const dispatch = useDispatch();
+
+  const handleStatusChange = () => {
+    let newStatus: "TODO" | "INPROGRESS" | "DONE";
+    
+    switch (status) {
+      case "TODO":
+        newStatus = "INPROGRESS";
+        break;
+      case "INPROGRESS":
+        newStatus = "DONE";
+        break;
+      default:
+        newStatus = status;
+    }
+    
+    dispatch(updateTaskStatus({ id, status: newStatus }));
+  };
+
+  const handleDelete = () => {
+    dispatch(deleteTask(id));
+  };
+
   return (
     <Card theme={customTheme}  className="max-w-sm ">
       <div className="flex justify-end px-2 pt-2">
@@ -31,13 +57,15 @@ const AppCard:React.FC = () => {
         <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">TASK TITLE</h5>
         <span className="text-sm text-gray-500 dark:text-gray-400">descroption</span>
         <div className="mt-4 flex space-x-3 lg:mt-6">
-          <button
-            className="inline-flex items-center rounded-lg bg-cyan-700 px-4 py-2 text-center text-sm font-medium text-white hover:bg-cyan-800 focus:outline-none focus:ring-4 focus:ring-cyan-300 dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-cyan-800"
+        {status !== "DONE" ? (  <button
+            className=" inline-flex items-center rounded-lg bg-cyan-700 px-4 py-2 text-center text-sm font-medium text-white hover:bg-cyan-800 focus:outline-none focus:ring-4 focus:ring-cyan-300 dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-cyan-800"
+            onClick={handleStatusChange}
           >
-            Done
-          </button>
+          {status == "TODO" ? "Mark INPROGRESS" : "Mark DONE"}
+          </button>) : (<></>) }
           <button
-            className="inline-flex items-center rounded-lg border border-gray-300 bg-white px-4 py-2 text-center text-sm font-medium text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-red-500 dark:text-white dark:hover:border-gray-700 dark:hover:bg-red-700 dark:focus:ring-gray-700"
+            className="inline-flex cursor-pointer items-center rounded-lg border border-gray-300 bg-white px-4 py-2 text-center text-sm font-medium text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-red-500 dark:text-white dark:hover:border-gray-700 dark:hover:bg-red-700 dark:focus:ring-gray-700"
+            onClick={handleDelete}
           >
             Delete
           </button>

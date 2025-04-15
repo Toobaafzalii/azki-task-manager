@@ -103,14 +103,14 @@ import {
     return (
       <MegaMenu theme={customTheme} className="w-full col-span-4">
         <NavbarBrand href="/">
-          <span className="self-center whitespace-nowrap text-3xl font-semibold dark:text-white">
+          <span className="self-center whitespace-nowrap text-2xl sm:text-3xl font-semibold dark:text-white">
             TASK MANAGER
           </span>
         </NavbarBrand>
-        <div className="order-2 hidden items-center md:flex">
+        <div className="order-2 items-center flex">
           <Button onClick={onNewTaskClick}>New Task</Button>
         </div>
-        <NavbarToggle />
+        {/* <NavbarToggle /> */}
       </MegaMenu>
     );
   }
