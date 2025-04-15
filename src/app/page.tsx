@@ -1,6 +1,7 @@
 
 import AppCard from "./components/appCard";
 import AppHeader from "./components/appHeader";
+import AppModal from "./components/appModal";
 
 export default function App() {
   return (
@@ -9,6 +10,7 @@ export default function App() {
       <AppCard/>
       <AppCard/>
       <AppCard/>
+      <AppModal/>
     </div>
   );
 }
