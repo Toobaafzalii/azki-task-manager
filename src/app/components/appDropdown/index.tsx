@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import { useRouter } from "next/navigation";
 
-interface MenuItem {
+export interface MenuItem {
   title: string;
   icon: string;
   action: () => void;
