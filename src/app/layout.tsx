@@ -1,7 +1,6 @@
+"use client"
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { store } from '../redux/store';
-import { Provider } from "react-redux";
 import ReduxProvider from "./providers/redux";
 
 const geistSans = Geist({
