@@ -58,7 +58,7 @@ const AppCard:React.FC<ITask> = ({description, title , status, id}) => {
         <span className="text-sm text-gray-500 dark:text-gray-400">{description}</span>
         <div className="mt-4 flex space-x-3 lg:mt-6">
         {status !== "DONE" ? (  <button
-            className=" inline-flex items-center text-nowrap rounded-lg bg-cyan-700 px-4 py-2 text-center text-sm font-medium text-white hover:bg-cyan-800 focus:outline-none focus:ring-4 focus:ring-cyan-300 dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-cyan-800"
+            className=" inline-flex items-center text-nowrap rounded-lg bg-cyan-700 px-4 py-2 text-center text-sm font-medium cursor-pointer text-white hover:bg-cyan-800 focus:outline-none focus:ring-4 focus:ring-cyan-300 dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-cyan-800"
             onClick={handleStatusChange}
           >
           {status == "TODO" ? "Mark INPROGRESS" : "Mark DONE"}

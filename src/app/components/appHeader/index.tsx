@@ -107,8 +107,9 @@ import {
             TASK MANAGER
           </span>
         </NavbarBrand>
-        <div className="order-2 items-center flex">
-          <Button onClick={onNewTaskClick}>New Task</Button>
+        <div className="order-2 items-center gap-2 flex">
+          <Button className="cursor-pointer">Profile</Button>
+          <Button className="cursor-pointer" onClick={onNewTaskClick}>New Task</Button>
         </div>
         {/* <NavbarToggle /> */}
       </MegaMenu>
