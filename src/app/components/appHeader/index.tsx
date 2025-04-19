@@ -7,6 +7,7 @@ import {
     NavbarBrand,
     NavbarToggle,
   } from "flowbite-react";
+import AppAvatar from "../appAvatar";
 
   const customTheme = {
     "root": {
@@ -107,8 +108,11 @@ import {
             TASK MANAGER
           </span>
         </NavbarBrand>
-        <div className="order-2 items-center gap-2 flex">
-          <Button className="cursor-pointer">Profile</Button>
+        <div className="order-2 items-center gap-2 flex cursor-pointer">
+          <div className="flex justify-center gap-1 items-center">
+            <AppAvatar src={"https://picsum.photos/200"} />
+            <img src="/dropdown-arrow.svg" className="w-4 h-4 hover:scale-110" />
+          </div>
           <Button className="cursor-pointer" onClick={onNewTaskClick}>New Task</Button>
         </div>
         {/* <NavbarToggle /> */}
