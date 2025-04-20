@@ -45,6 +45,7 @@ const AppSidebar: React.FC = () => {
         },
       }}
       open={true}
+      variant="permanent"
     >
       {menuItems.map((item, index) => (
         <Box
