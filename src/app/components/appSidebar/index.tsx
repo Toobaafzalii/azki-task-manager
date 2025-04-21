@@ -11,14 +11,18 @@ import {
 import { ListItem } from "flowbite-react";
 import { useRouter } from "next/navigation";
 
-const AppSidebar: React.FC = () => {
+interface AppSidebarProps {
+  onOpenModal: () => void;
+}
+
+const AppSidebar: React.FC<AppSidebarProps> = ({ onOpenModal }) => {
   const router = useRouter();
 
   const menuItems = [
     {
       title: "edit profile",
       icon: "/profile.svg",
-      action: () => router.push("/profile"),
+      action: onOpenModal,
     },
     {
       title: "wallet",

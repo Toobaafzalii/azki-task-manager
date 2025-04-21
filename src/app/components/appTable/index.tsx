@@ -1,8 +1,9 @@
 "use client";
+import { UserData } from "@/app/profile/page";
 import { Card, Typography, Divider, Box } from "@mui/material";
 import { styled } from "@mui/material/styles";
+import { useEffect, useState } from "react";
 
-// Styled components
 const ProfileCard = styled(Card)({
   background: "linear-gradient(135deg,rgb(31, 41, 55) 0%,rgb(30, 40, 60) 100%)",
   borderRadius: "16px",
@@ -49,15 +50,33 @@ const WalletValue = styled(Typography)({
   display: "inline-block",
 });
 
-export default function UserProfileDisplay() {
-  const user = {
-    firstName: "Alexandra",
-    lastName: "Chen",
-    birthYear: 1992,
-    phone: "+1 (415) 555-0192",
-    email: "ndnd@google.com",
-    wallet: 4825.75,
-  };
+interface UserProfileTableProps {
+  editedData: UserData;
+}
+
+export default function UserProfileTable({
+  editedData,
+}: UserProfileTableProps) {
+  const [userData, setUserData] = useState({
+    firstname: "",
+    lastname: "",
+    birthYear: "",
+    phone: "",
+    email: "",
+  });
+
+  useEffect(() => {
+    const savedData = localStorage.getItem("profileFormData");
+    if (savedData) {
+      setUserData(JSON.parse(savedData));
+    }
+  }, []);
+
+  useEffect(() => {
+    if (editedData) {
+      setUserData(editedData);
+    }
+  }, [editedData]);
 
   return (
     <ProfileCard>
@@ -78,38 +97,36 @@ export default function UserProfileDisplay() {
       <Box>
         <InfoRow>
           <InfoLabel>First Name:</InfoLabel>
-          <InfoValue>{user.firstName}</InfoValue>
+          <InfoValue>{userData.firstname}</InfoValue>
         </InfoRow>
 
         <InfoRow>
           <InfoLabel>Last Name:</InfoLabel>
-          <InfoValue>{user.lastName}</InfoValue>
+          <InfoValue>{userData.lastname}</InfoValue>
         </InfoRow>
 
         <InfoRow>
           <InfoLabel>Birth Year:</InfoLabel>
-          <InfoValue>{user.birthYear}</InfoValue>
+          <InfoValue>{userData.birthYear}</InfoValue>
         </InfoRow>
 
         <InfoRow>
           <InfoLabel>Phone:</InfoLabel>
-          <InfoValue sx={{ fontFamily: "monospace" }}>{user.phone}</InfoValue>
+          <InfoValue sx={{ fontFamily: "monospace" }}>
+            {userData.phone}
+          </InfoValue>
         </InfoRow>
 
         <InfoRow>
           <InfoLabel>Email:</InfoLabel>
-          <InfoValue sx={{ fontFamily: "monospace" }}>{user.email}</InfoValue>
+          <InfoValue sx={{ fontFamily: "monospace" }}>
+            {userData.email}
+          </InfoValue>
         </InfoRow>
 
         <InfoRow sx={{ alignItems: "baseline" }}>
-          <InfoLabel>Wallet:</InfoLabel>
-          <WalletValue>
-            {user.wallet.toLocaleString("en-US", {
-              style: "currency",
-              currency: "USD",
-              minimumFractionDigits: 2,
-            })}
-          </WalletValue>
+          <InfoLabel>Balance:</InfoLabel>
+          <WalletValue>$ 4825.75</WalletValue>
         </InfoRow>
       </Box>
     </ProfileCard>
